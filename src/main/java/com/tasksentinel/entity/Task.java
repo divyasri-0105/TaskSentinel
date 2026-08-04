@@ -3,10 +3,14 @@ package com.tasksentinel.entity;
 import com.tasksentinel.enums.Status;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "tasks")
 public class Task {

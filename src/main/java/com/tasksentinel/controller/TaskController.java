@@ -1,16 +1,21 @@
 package com.tasksentinel.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
+import com.tasksentinel.entity.Task;
+import com.tasksentinel.service.TaskService;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("/tasks")
 public class TaskController {
 
-    @GetMapping("/tasks")
-    public List<String> getTasks() {
-        return List.of("Study DSA", "Go to Gym", "Drink Water");
+    private final TaskService taskService;
+
+    public TaskController(TaskService taskService) {
+        this.taskService = taskService;
     }
 
+    @PostMapping
+    public Task createTask(@RequestBody Task task) {
+        return taskService.saveTask(task);
+    }
 }
