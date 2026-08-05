@@ -3,6 +3,7 @@ package com.tasksentinel.controller;
 import com.tasksentinel.entity.Task;
 import com.tasksentinel.service.TaskService;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
@@ -25,4 +26,17 @@ public class TaskController {
     public List<Task> getAllTasks() {
         return taskService.getAllTasks();
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Task> getTaskById(@PathVariable Long id) {
+
+        Task task = taskService.getTaskById(id);
+
+        if (task == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok(task);
+    }
+
 }
