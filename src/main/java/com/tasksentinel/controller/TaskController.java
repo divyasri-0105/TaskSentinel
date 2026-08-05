@@ -4,6 +4,8 @@ import com.tasksentinel.entity.Task;
 import com.tasksentinel.service.TaskService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/tasks")
 public class TaskController {
@@ -17,5 +19,10 @@ public class TaskController {
     @PostMapping
     public Task createTask(@RequestBody Task task) {
         return taskService.saveTask(task);
+    }
+
+    @GetMapping
+    public List<Task> getAllTasks() {
+        return taskService.getAllTasks();
     }
 }
