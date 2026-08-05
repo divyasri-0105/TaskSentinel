@@ -39,4 +39,29 @@ public class TaskController {
         return ResponseEntity.ok(task);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<Task> updateTask(@PathVariable Long id,
+                                           @RequestBody Task updatedTask) {
+
+        Task task = taskService.updateTask(id, updatedTask);
+
+        if (task == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok(task);
+    }
+
+    @DeleteMapping("/{id}")
+    public String deleteTask(@PathVariable Long id) {
+
+        boolean deleted = taskService.deleteTask(id);
+
+        if (deleted) {
+            return "Task deleted successfully!";
+        }
+
+        return "Task not found!";
+    }
+
 }
