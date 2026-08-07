@@ -39,6 +39,11 @@ public class TaskController {
         return ResponseEntity.ok(task);
     }
 
+    @GetMapping("/today")
+    public List<Task> getTodayTasks() {
+        return taskService.getTodayTasks();
+    }
+
     @PutMapping("/{id}")
     public ResponseEntity<Task> updateTask(@PathVariable Long id,
                                            @RequestBody Task updatedTask) {

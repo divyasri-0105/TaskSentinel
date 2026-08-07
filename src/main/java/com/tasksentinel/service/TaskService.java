@@ -3,6 +3,7 @@ package com.tasksentinel.service;
 import com.tasksentinel.entity.Task;
 import com.tasksentinel.repository.TaskRepository;
 import org.springframework.stereotype.Service;
+import java.time.LocalDate;
 
 import java.util.List;
 
@@ -25,6 +26,10 @@ public class TaskService {
 
     public Task getTaskById(Long id) {
         return taskRepository.findById(id).orElse(null);
+    }
+
+    public List<Task> getTodayTasks() {
+        return taskRepository.findByReminderDate(LocalDate.now());
     }
 
     public Task updateTask(Long id, Task updatedTask) {
