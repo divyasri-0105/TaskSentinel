@@ -1,6 +1,7 @@
 package com.tasksentinel.controller;
 
 import com.tasksentinel.entity.Task;
+import com.tasksentinel.enums.Status;
 import com.tasksentinel.service.TaskService;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
@@ -42,6 +43,16 @@ public class TaskController {
     @GetMapping("/today")
     public List<Task> getTodayTasks() {
         return taskService.getTodayTasks();
+    }
+
+    @GetMapping("/pending")
+    public List<Task> getPendingTasks() {
+        return taskService.getTasksByStatus(Status.PENDING);
+    }
+
+    @GetMapping("/completed")
+    public List<Task> getCompletedTasks() {
+        return taskService.getTasksByStatus(Status.COMPLETED);
     }
 
     @PutMapping("/{id}")

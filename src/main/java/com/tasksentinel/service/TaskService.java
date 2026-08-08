@@ -4,6 +4,7 @@ import com.tasksentinel.entity.Task;
 import com.tasksentinel.repository.TaskRepository;
 import org.springframework.stereotype.Service;
 import java.time.LocalDate;
+import com.tasksentinel.enums.Status;
 
 import java.util.List;
 
@@ -22,6 +23,10 @@ public class TaskService {
 
     public List<Task> getAllTasks() {
         return taskRepository.findAll();
+    }
+
+    public List<Task> getTasksByStatus(Status status) {
+        return taskRepository.findByStatus(status);
     }
 
     public Task getTaskById(Long id) {

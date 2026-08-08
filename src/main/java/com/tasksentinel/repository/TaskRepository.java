@@ -11,4 +11,6 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
 
     List<Task> findByReminderDate(LocalDate reminderDate);
 
+    List<Task> findByStatus(Status status);
+
 }
